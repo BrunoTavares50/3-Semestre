@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Services\" />
     <Folder Include="Utils\" />
-    <Folder Include="DTO\" />
     <Folder Include="BdContextEvent\" />
     <Folder Include="Models\" />
   </ItemGroup>
