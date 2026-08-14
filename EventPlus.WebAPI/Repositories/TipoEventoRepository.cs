@@ -14,15 +14,22 @@ namespace EventPlus.WebAPI.Repositories
             _context = context;
         }
 
-
-        public Task Atualizar(Guid id, TipoEvento tipoEvento)
+        public async Task Atualizar(Guid id, TipoEvento tipoEvento)
         {
-            throw new NotImplementedException();
+            var tipoEventoBuscado = await _context.TipoEvento.FindAsync(id);
+
+            if(tipoEventoBuscado != null)
+            {
+                tipoEventoBuscado.Titulo = tipoEvento.Titulo;
+
+                _context.TipoEvento.Update(tipoEventoBuscado);
+                await _context.SaveChangesAsync();
+            }
         }
 
-        public Task<TipoEvento?> BuscarPorId(Guid id)
+        public async Task<TipoEvento?> BuscarPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return await _context.TipoEvento.FirstOrDefaultAsync(t => t.IdTipoEvento == id);
         }
 
         public async Task Cadastrar(TipoEvento tipoEvento)
