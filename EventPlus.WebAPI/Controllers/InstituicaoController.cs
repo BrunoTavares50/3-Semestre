@@ -1,4 +1,5 @@
-﻿using EventPlus.WebAPI.Interfaces;
+﻿using EventPlus.WebAPI.DTO;
+using EventPlus.WebAPI.Interfaces;
 using EventPlus.WebAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -45,17 +46,39 @@ namespace EventPlus.WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Cadastrar(Guid id, Instituicao instituicao)
+        public async Task<IActionResult> Cadastrar([FromBody] InstituicaoDTO dto)
         {
-            try
+            var instituicao = new Instituicao
             {
-                await _instituicao.Cadastrar(instituicao);
-                return Ok();
-            }
-            catch (Exception)
+                Cnpj = dto.CNPJ,
+                NomeFantasia = dto.NomeFantasia,
+                Endereco = dto.Endereco
+            };
+
+            await _instituicao.Cadastrar(instituicao);
+
+            return StatusCode(201, instituicao);
+        }
+
+        [HttpPut("{id:guid}")]
+        public async Task<IActionResult> Atualizar(Guid id, [FromBody] InstituicaoDTO dto)
+        {
+            var instituicao = new Instituicao
             {
-                return NotFound();
-            }
+                Cnpj = dto.CNPJ,
+                NomeFantasia = dto.NomeFantasia,
+                Endereco = dto.Endereco
+            };
+
+            await _instituicao.Atualizar(id, instituicao);
+            return Ok(instituicao);
+        }
+
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> Deletar(Guid id)
+        {
+            await _instituicao.Deletar(id);
+            return NoContent();
         }
     }
 }

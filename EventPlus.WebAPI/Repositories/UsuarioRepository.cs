@@ -2,6 +2,7 @@
 using EventPlus.WebAPI.Interfaces;
 using EventPlus.WebAPI.Models;
 using EventPlus.WebAPI.Utils;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
 namespace EventPlus.WebAPI.Repositories
@@ -32,7 +33,20 @@ namespace EventPlus.WebAPI.Repositories
 
         public async Task<Usuario?> BuscarPorEmailESenha(string email, string senha)
         {
-            return await _context.Usuario.FirstOrDefaultAsync(u => u.Email == email && u.Senha == senha);
+            //return await _context.Usuario.FirstOrDefaultAsync(u => u.Email == email && u.Senha == senha);
+
+            var usuario = await _context.Usuario.Include(u => u.IdTipoUsuarioNavigation).FirstAsync(u => u.Email == email);
+
+            if (usuario == null)
+                return null;
+
+            // Verifica se a senha digitada corresponde ao hash salvo no banco
+            bool senhaValida = Criptografia.CompararHash(senha, usuario.Senha);
+
+            if (!senhaValida)
+                return null;
+
+            return usuario;
         }
 
         public async Task<Usuario?> BuscarPorId(Guid id)
@@ -62,7 +76,7 @@ namespace EventPlus.WebAPI.Repositories
 
         public async Task<List<Usuario>> Listar()
         {
-            return await _context.Usuario.AsNoTracking().ToListAsync();
+            return await _context.Usuario.Include(u => u.IdTipoUsuarioNavigation).AsNoTracking().ToListAsync();
         }
     }
 }

@@ -11,5 +11,9 @@ namespace EventPlus.WebAPI.DTO
         [Required(ErrorMessage = "O NomeFantasia é obrigatório.")]
         [StringLength(100, ErrorMessage = "O NomeFantasia pode ter no máximo 100 caracteres.")]
         public string NomeFantasia { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "O Endereco é obrigatório.")]
+        [StringLength(100, ErrorMessage = "O Endereço pode ter no máximo 100 caracteres.")]
+        public string Endereco { get; set; } = string.Empty;
     }
 }

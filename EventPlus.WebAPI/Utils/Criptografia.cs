@@ -10,5 +10,22 @@
         {
             return BCrypt.Net.BCrypt.HashPassword(senha);
         }
+
+        public static bool CompararHash(string senhaInformada, string senhaArmazenada)
+        {
+            if (string.IsNullOrEmpty(senhaInformada) || string.IsNullOrEmpty(senhaArmazenada))
+            {
+                return false;
+            }
+
+            try
+            {
+                return BCrypt.Net.BCrypt.Verify(senhaInformada, senhaArmazenada);
+            }
+            catch (BCrypt.Net.SaltParseException)
+            {
+                return false;
+            }
+        }
     }
 }

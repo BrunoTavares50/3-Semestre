@@ -20,7 +20,9 @@ namespace EventPlus.WebAPI.Repositories
 
             if(instituicaoBuscada != null)
             {
-                instituicaoBuscada.IdInstituicao = instituicao.IdInstituicao;
+                instituicaoBuscada.Cnpj = instituicao.Cnpj;
+                instituicaoBuscada.NomeFantasia = instituicao.NomeFantasia;
+                instituicaoBuscada.Endereco = instituicao.Endereco;
 
                 _context.Instituicao.Update(instituicaoBuscada);
                 await _context.SaveChangesAsync();
