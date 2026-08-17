@@ -1,6 +1,7 @@
 ﻿using EventPlus.WebAPI.BdContextEvent;
 using EventPlus.WebAPI.Interfaces;
 using EventPlus.WebAPI.Models;
+using EventPlus.WebAPI.Utils;
 using Microsoft.EntityFrameworkCore;
 
 namespace EventPlus.WebAPI.Repositories
@@ -41,8 +42,10 @@ namespace EventPlus.WebAPI.Repositories
 
         public async Task Cadastrar(Usuario usuario)
         {
-            await _context.Usuario.AddAsync(usuario);
+            //Criptografamos a senha antes de salvar no banco
+            usuario.Senha = Criptografia.GerarHash(usuario.Senha);
 
+            await _context.Usuario.AddAsync(usuario);
             await _context.SaveChangesAsync();
         }
 

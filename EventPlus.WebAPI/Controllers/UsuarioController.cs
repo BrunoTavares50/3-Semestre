@@ -20,16 +20,23 @@ namespace EventPlus.WebAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Cadastrar([FromBody] UsuarioDTO dto)
         {
-            var usuario = new Usuario()
+            try
             {
-                Nome = dto.Nome,
-                Email = dto.Email,
-                Senha = dto.Senha
-            };
+                var usuario = new Usuario()
+                {
+                    Nome = dto.Nome,
+                    Email = dto.Email,
+                    Senha = dto.Senha, //obs: a criptografia ocorre no repository
+                    IdTipoUsuario = dto.IdTipoUsuario
+                };
 
-            await _usuario.Cadastrar(usuario);
-
-            return StatusCode(201, usuario);
+                await _usuario.Cadastrar(usuario);
+                return StatusCode(201, usuario);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
 
         [HttpPut("{id:guid}")]
@@ -82,13 +89,7 @@ namespace EventPlus.WebAPI.Controllers
         [HttpGet("BuscarEmailSenha")]
         public async Task<IActionResult> BuscarPorEmailESenha([FromBody] LoginDTO dto)
         {
-            var usuario = new Usuario
-            {
-                Email = dto.Email,
-                Senha = dto.Senha
-            };
-
-            var usuarioBuscado = await _usuario.BuscarPorEmailESenha(usuario.Email, usuario.Senha);
+            var usuarioBuscado = await _usuario.BuscarPorEmailESenha(dto.Email, dto.Senha);
 
             if (usuarioBuscado == null)
                 return NotFound("Usuário não encontrado.");

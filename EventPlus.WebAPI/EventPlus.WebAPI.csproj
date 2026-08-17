@@ -8,12 +8,12 @@
 
   <ItemGroup>
     <Folder Include="Services\" />
-    <Folder Include="Utils\" />
     <Folder Include="BdContextEvent\" />
     <Folder Include="Models\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.10">
       <PrivateAssets>all</PrivateAssets>

@@ -45,11 +45,23 @@ namespace EventPlus.WebAPI.Controllers
             return StatusCode(201, tipoEvento);
         }
 
+        /// <summary>
+        /// Remove uma categoria de evento
+        /// </summary>
+        /// <param name="id">Id do objeto a ser excluído</param>
+        /// <returns>Status Code NoContent se der certo e 400 caso haja exceção</returns>
         [HttpDelete("{id:guid}")]
         public async Task<IActionResult> Deletar(Guid id)
         {
-            await _tipoEvento.Deletar(id);
-            return NoContent();
+            try
+            {
+                await _tipoEvento.Deletar(id);
+                return Ok(id);
+            }
+            catch (Exception)
+            {
+                return NoContent();
+            }
         }
 
         [HttpGet("{id:guid}")]
@@ -57,7 +69,7 @@ namespace EventPlus.WebAPI.Controllers
         {
             var tipoEventoBuscado = await _tipoEvento.BuscarPorId(id);
 
-            if(tipoEventoBuscado == null)
+            if (tipoEventoBuscado == null)
             {
                 return NotFound("Tipo de evento não foi encontrado.");
             }
