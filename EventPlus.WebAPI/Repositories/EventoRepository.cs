@@ -69,8 +69,7 @@ namespace EventPlus.WebAPI.Repositories
 
         public async Task<List<Evento>> ListarProximosEventos()
         {
-            return await _context.Evento.AsNoTracking().ToListAsync();
-
+            return await _context.Evento.Where(e => e.DataEvento >= DateTime.Now).OrderBy(e => e.DataEvento).AsNoTracking().ToListAsync();
         }
     }
 }

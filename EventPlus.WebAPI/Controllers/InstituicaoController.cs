@@ -34,15 +34,12 @@ namespace EventPlus.WebAPI.Controllers
         [HttpGet("{id:guid}")]
         public async Task<IActionResult> BuscarPorId(Guid id)
         {
-            try
-            {
-                var instituicao = await _instituicao.BuscarPorId(id);
-                return Ok(instituicao);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e);
-            }
+            var instituicao = await _instituicao.BuscarPorId(id);
+
+            if (instituicao == null)
+                return NotFound("Instituição não encontrada.");
+
+            return Ok(instituicao);
         }
 
         [HttpPost]

@@ -24,6 +24,7 @@ builder.Services.AddScoped<ITipoUsuario, TipoUsuarioRepository>();
 builder.Services.AddScoped<ITipoEvento, TipoEventoRepository>();
 builder.Services.AddScoped<IUsuario, UsuarioRepository>();
 builder.Services.AddScoped<IInstituicao, InstituicaoRepository>();
+builder.Services.AddScoped<IEvento, EventoRepository>();
 
 //Registra o serviço de controllers(mapeia automaticamente os controllers da pasta /Controllers)
 builder.Services.AddControllers();
