@@ -31,6 +31,7 @@ namespace EventPlus.WebAPI.Controllers
                 };
 
                 await _usuario.Cadastrar(usuario);
+
                 return StatusCode(201, usuario);
             }
             catch (Exception e)
@@ -92,6 +93,7 @@ namespace EventPlus.WebAPI.Controllers
             var usuarioBuscado = await _usuario.BuscarPorEmailESenha(dto.Email, dto.Senha);
 
             if (usuarioBuscado == null)
+
                 return NotFound("Usuário não encontrado.");
 
             return Ok(usuarioBuscado);

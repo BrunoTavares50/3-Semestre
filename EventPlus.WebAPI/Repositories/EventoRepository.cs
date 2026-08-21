@@ -24,6 +24,8 @@ namespace EventPlus.WebAPI.Repositories
                 eventoBuscado.Descricao = evento.Descricao;
                 eventoBuscado.DataEvento = evento.DataEvento;
                 eventoBuscado.ImagemUrl = evento.ImagemUrl;
+                eventoBuscado.IdTipoEvento = evento.IdTipoEvento;
+                eventoBuscado.IdInstituicao = evento.IdInstituicao;
 
                 _context.Evento.Update(eventoBuscado);
                 await _context.SaveChangesAsync();
@@ -64,7 +66,7 @@ namespace EventPlus.WebAPI.Repositories
 
         public async Task<List<Evento>> ListarPorInstituicao(Guid IdInstituicao)
         {
-            return await _context.Evento.Where(e => e.IdInstituicao == IdInstituicao).AsNoTracking().ToListAsync();
+            return await _context.Evento.Where(e => e.IdInstituicao == IdInstituicao).Include(e => e.IdInstituicaoNavigation).AsNoTracking().ToListAsync();
         }
 
         public async Task<List<Evento>> ListarProximosEventos()

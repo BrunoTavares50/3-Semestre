@@ -36,7 +36,7 @@ public partial class EventContext : DbContext
         if (!optionsBuilder.IsConfigured)
         {
             // String de Conexão Secundária para não dar conflito com o que eu utilizo em casa ou vice-versa com o Senai
-            optionsBuilder.UseSqlServer("Server=DESKTOP-4TAGHQN\\SQLEXPRESS;Database=EventPlus;User Id=sa;Password=Senai@134;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer("Server=D24S20-1251883\\MSSQLSERVER2;Database=EventPlus;User Id=sa;Password=Senai@134;TrustServerCertificate=True;");
         }
     }
     //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

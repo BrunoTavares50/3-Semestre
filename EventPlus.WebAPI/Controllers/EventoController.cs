@@ -25,9 +25,9 @@ namespace EventPlus.WebAPI.Controllers
                 var eventos = await _evento.Listar();
                 return Ok(eventos);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return BadRequest();
+                return BadRequest(e.Message);
             }
         }
 
@@ -65,6 +65,65 @@ namespace EventPlus.WebAPI.Controllers
         {
             await _evento.Deletar(id);
             return NoContent();
+        }
+
+        [HttpPut("{id:guid}")]
+        public async Task<IActionResult> Atualizar(Guid id, [FromBody] EventoDTO dto)
+        {
+            var evento = new Evento()
+            {
+                NomeEvento = dto.NomeEvento,
+                Descricao = dto.Descricao,
+                DataEvento = dto.DataEvento,
+                ImagemUrl = dto.ImagemUrl,
+                IdTipoEvento = dto.IdTipoEvento,
+                IdInstituicao = dto.IdInstituicao
+            };
+
+            await _evento.Atualizar(id, evento);
+            return Ok(evento);
+        }
+
+        [HttpGet("ListarPorInscrito/{id:guid}")]
+        public async Task<IActionResult> ListarPorInscrito(Guid id)
+        {
+            try
+            {
+                var evento = await _evento.ListarPorInscrito(id);
+                return Ok(evento);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("ListarPorInstituicao/{id:guid}")]
+        public async Task<IActionResult> ListarPorInstituicao(Guid id)
+        {
+            try
+            {
+                var evento = await _evento.ListarPorInstituicao(id);
+                return Ok(evento);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("ListarProximosEventos")]
+        public async Task<IActionResult> ListarProximosEventos()
+        {
+            try
+            {
+                var evento = await _evento.ListarProximosEventos();
+                return Ok(evento);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bruno\\Desktop\\3-Semestre\\EventPlus.WebAPI\\EventPlus.WebAPI.csproj": {}
+    "C:\\Users\\54166966804\\Desktop\\3-Semestre\\EventPlus.WebAPI\\EventPlus.WebAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bruno\\Desktop\\3-Semestre\\EventPlus.WebAPI\\EventPlus.WebAPI.csproj": {
+    "C:\\Users\\54166966804\\Desktop\\3-Semestre\\EventPlus.WebAPI\\EventPlus.WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bruno\\Desktop\\3-Semestre\\EventPlus.WebAPI\\EventPlus.WebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\54166966804\\Desktop\\3-Semestre\\EventPlus.WebAPI\\EventPlus.WebAPI.csproj",
         "projectName": "EventPlus.WebAPI",
-        "projectPath": "C:\\Users\\bruno\\Desktop\\3-Semestre\\EventPlus.WebAPI\\EventPlus.WebAPI.csproj",
-        "packagesPath": "C:\\Users\\bruno\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bruno\\Desktop\\3-Semestre\\EventPlus.WebAPI\\obj\\",
+        "projectPath": "C:\\Users\\54166966804\\Desktop\\3-Semestre\\EventPlus.WebAPI\\EventPlus.WebAPI.csproj",
+        "packagesPath": "C:\\Users\\54166966804\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\54166966804\\Desktop\\3-Semestre\\EventPlus.WebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\bruno\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\54166966804\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -45,7 +45,7 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.400"
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
         "net10.0": {
@@ -55,6 +55,10 @@
             "BCrypt.Net-Next": {
               "target": "Package",
               "version": "[4.2.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[10.0.11, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -108,7 +112,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.400/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
